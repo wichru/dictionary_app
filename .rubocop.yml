@@ -16,3 +16,7 @@ Metrics/MethodLength:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+
+Style/MixinUsage:
+  Exclude:
+    - 'lib/monads.rb'
