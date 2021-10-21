@@ -1,15 +1,23 @@
 # frozen_string_literal: true
 
+require 'pry'
+
 class ScriptMatcher
+  def initialize(path)
+    @path = path
+  end
+
   def call
     length_hash = compute_hash(file_to_array)
-    p matched_words(length_hash)
+    matched_words(length_hash)
   end
+
+  attr_reader :path
 
   private
 
   def file_to_array
-    File.read('dictionary.txt').split.uniq.map(&:downcase)
+    File.read(path).split.uniq.map(&:downcase).sort
   end
 
   def compute_hash(dictionary)
@@ -32,5 +40,3 @@ class ScriptMatcher
     w && w == word
   end
 end
-
-ScriptMatcher.new.call
